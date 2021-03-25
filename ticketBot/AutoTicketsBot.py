@@ -1,21 +1,20 @@
 from splinter.browser import Browser
 
 class AutoTicketsBot(object):
-    def __init__(self, username, password, homePage, ticketPage, executable_path, ticketCount):
-        self.username = username
-        self.password = password
-        self.homePage = homePage
-        #self.homePage = 'https://kktix.com/'
-        self.ticketPage = ticketPage
+    def __init__(self, config):
+        self.userConfig = config['Config']
+        self.browserConfig = config['Browser']
+        self.username = self.userConfig['username']
+        self.password = self.userConfig['password']
+        self.homePage = self.userConfig['homePage']
+        self.ticketPage = self.userConfig['ticketPage']
         self.driver_name = 'chrome'
-        self.executable_path = executable_path
-        #self.executable_path = '/Users/tyyen/Downloads/chromedriver'
-        self.ticketCount = ticketCount
+        self.executable_path = self.userConfig['executable_path']
+        self.ticketCount = self.userConfig['ticketCount']
 
     def initBrowser(self):
         self.driver = Browser(driver_name=self.driver_name, executable_path=self.executable_path)
-        #TODO: put width and length into config
-        self.driver.driver.set_window_size(1000, 700)
+        self.driver.driver.set_window_size(self.browserConfig['width'], self.browserConfig['height'])
 
     def visitHomePage(self):
         self.driver.visit(self.homePage)

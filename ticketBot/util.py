@@ -2,10 +2,11 @@ import sys
 import os
 import yaml
 import schedule
+import time
 
 def configRead(fileName):
     with open(os.path.join(os.path.dirname(__file__), fileName)) as c:
-        config = yaml.safe_load(c)['Config']
+        config = yaml.safe_load(c)
     return config
 
 def notifyUser(title, text):
@@ -13,14 +14,15 @@ def notifyUser(title, text):
               osascript -e 'display notification "{}" with title "{}"'
               """.format(text, title))
 
-def terminateBot(ticketsBot):
+def terminateBot(ticketsBot, waitTime=0):
+	time.sleep(waitTime)
 	ticketsBot.quit()
 
-def websiteSignIn(ticketsBot):
+def websiteSignIn(ticketsBot, retryCounter=5):
     ticketsBot.initBrowser()
     ticketsBot.visitHomePage()
     iteration = 0
-    while iteration < 5:
+    while iteration < retryCounter:
         try:
             ticketsBot.signInHomePage()
             ticketsBot.signInChecker(wait_time=3)
@@ -29,16 +31,14 @@ def websiteSignIn(ticketsBot):
             print(e)
             iteration += 1
             print('Retrying {} time...'.format(iteration))
-    if iteration >= 5:
+    if iteration >= retryCounter:
     	raise RuntimeError("Failed to sign in to the website. Please verify your account information and restart the program.")
 
 def buyTickets(ticketsBot):
     ticketsBot.enterTicketPage()
     ticketsBot.selectTicket()
-    sleep(600)
-    ticketsBot.quit()
 
-def schedultBot():
+def scheduleBot():
     schedule.every().day.at("19:58").do(websiteSignIn, ticketsBot)
     schedule.every().day.at("20:00").do(buyTicket, ticketsBot)
 

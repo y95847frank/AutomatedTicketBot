@@ -3,13 +3,14 @@ from ticketBot import websiteSignIn, buyTickets, terminateBot, AutoTicketsBot, c
 #TODO: yml setup
 
 config = configRead('config.yml')
-ticketsBot = AutoTicketsBot(config['username'], config['password'], config['homePage'], config['ticketPage'], config['executable_path']
-                        , config['ticketCount'])
+ticketsBot = AutoTicketsBot(config)
 
 try:
-	websiteSignIn(ticketsBot)
+	websiteSignIn(ticketsBot, retryCounter=3)
 	buyTickets(ticketsBot)
+	notifyUser('AutoTicketsBot Notification', 'Got tickets!!!!!')
+	terminateBot(ticketsBot, waitTime=600)
 
 except RuntimeError as e:
-	terminateBot(ticketsBot)
+	terminateBot(ticketsBot, waitTime=0)
 	print(e)
