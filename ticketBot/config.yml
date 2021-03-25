@@ -5,6 +5,7 @@ Config:
   ticketPage: "https://kktix.com/events/jolin0421-2/registrations/new"
   executable_path: "/Users/tyyen/Downloads/chromedriver"
   ticketCount: 2
+  startTime: "18:49"
 Browser:
   width: 840
   height: 640

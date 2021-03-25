@@ -3,6 +3,7 @@ import os
 import yaml
 import schedule
 import time
+import datetime
 
 def configRead(fileName):
     with open(os.path.join(os.path.dirname(__file__), fileName)) as c:
@@ -38,10 +39,16 @@ def buyTickets(ticketsBot):
     ticketsBot.enterTicketPage()
     ticketsBot.selectTicket()
 
-def scheduleBot():
-    schedule.every().day.at("19:58").do(websiteSignIn, ticketsBot)
-    schedule.every().day.at("20:00").do(buyTicket, ticketsBot)
+def buyTicketsPipeline(ticketsBot):
+    buyTickets(ticketsBot)
+    notifyUser('AutoTicketsBot Notification', 'Got tickets!!!!!')
+    terminateBot(ticketsBot, waitTime=600)
+
+def scheduleBot(ticketsBot, startTime):
+    twoMinDelta = datetime.datetime.strptime(startTime, "%H:%M") - datetime.timedelta(minutes=2)
+    schedule.every().day.at(twoMinDelta.strftime("%H:%M")).do(websiteSignIn, ticketsBot, 3)
+    schedule.every().day.at(startTime).do(buyTicketsPipeline, ticketsBot)
 
     while True:
         schedule.run_pending()
-        sleep(1)
+        time.sleep(1)
