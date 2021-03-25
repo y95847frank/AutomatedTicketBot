@@ -2,10 +2,10 @@ from ticketBot import websiteSignIn, buyTickets, terminateBot, scheduleBot, Auto
 
 #TODO: yml setup
 
-config = configRead('config.yml')
+config = configRead('var/config.yml')
 ticketsBot = AutoTicketsBot(config)
 
-scheduleBot(ticketsBot, config['Config']['startTime'])
+#scheduleBot(ticketsBot, config['Config']['startTime'])
 
 try:
 	websiteSignIn(ticketsBot, retryCounter=3)

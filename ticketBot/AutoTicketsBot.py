@@ -45,7 +45,7 @@ class AutoTicketsBot(object):
             raise RuntimeError("Failed to find SignIn button in signIn page...")
 
     def signInChecker(self, wait_time=3):
-        if self.driver.is_element_present_by_text('Sign In', wait_time=wait_time) is True:
+        if self.driver.is_element_not_present_by_text(self.username, wait_time=wait_time) is True:
             raise RuntimeError("Failed to sign in to the website...")
         
     def enterTicketPage(self):
