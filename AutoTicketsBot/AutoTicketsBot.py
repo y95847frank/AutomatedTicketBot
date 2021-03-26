@@ -49,7 +49,6 @@ class AutoTicketsBot(object):
             raise RuntimeError("Failed to sign in to the website...")
         
     def enterTicketPage(self):
-        #TODO: Keep refreshing
         self.driver.visit(self.ticketPage)
         while self.driver.is_element_not_present_by_css('button[class="btn-default plus"]', wait_time=5) is True:
             self.driver.visit(self.ticketPage)
