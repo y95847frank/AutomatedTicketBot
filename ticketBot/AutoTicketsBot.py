@@ -6,18 +6,18 @@ class AutoTicketsBot(object):
         self.browserConfig = config['Browser']
         self.username = self.userConfig['username']
         self.password = self.userConfig['password']
-        self.homePage = self.userConfig['homePage']
+        self.homeUrl = self.userConfig['homeUrl']
         self.ticketPage = self.userConfig['ticketPage']
         self.driver_name = 'chrome'
-        self.executable_path = self.userConfig['executable_path']
+        self.executablePath = self.userConfig['executablePath']
         self.ticketCount = self.userConfig['ticketCount']
 
     def initBrowser(self):
-        self.driver = Browser(driver_name=self.driver_name, executable_path=self.executable_path)
+        self.driver = Browser(driver_name=self.driver_name, executable_path=self.executablePath)
         self.driver.driver.set_window_size(self.browserConfig['width'], self.browserConfig['height'])
 
     def visitHomePage(self):
-        self.driver.visit(self.homePage)
+        self.driver.visit(self.homeUrl)
         if self.driver.is_element_present_by_text('English', wait_time=5) is True:
             self.driver.find_by_text('English').first.click()
         else:
@@ -56,7 +56,7 @@ class AutoTicketsBot(object):
 
     def selectTicket(self):
         for __ in range(self.ticketCount):
-            self.driver.find_by_css('button[class="btn-default plus"]').last.click()
+            self.driver.find_by_css('button[class="btn-default plus"]')[-2].click()
 
         if self.driver.is_element_present_by_id('person_agree_terms', wait_time=2) is True:
             self.driver.find_by_id('person_agree_terms').check()

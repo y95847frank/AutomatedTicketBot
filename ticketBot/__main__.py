@@ -1,8 +1,17 @@
-from ticketBot import websiteSignIn, buyTickets, terminateBot, scheduleBot, AutoTicketsBot, configRead
+from ticketBot import websiteSignIn, buyTickets, terminateBot, scheduleBot, AutoTicketsBot, configRead, notifyUser, addArgs, configWrite
 
-#TODO: yml setup
+#TODO: yml, splinter setup
 
-config = configRead('var/config.yml')
+configDestination = 'var/config.yml'
+args = addArgs()
+
+config = configRead(configDestination)
+
+if configWrite(configDestination, args, config) is True:
+	print("Successfully store new config to {}".format(configDestination))
+
+assert False
+
 ticketsBot = AutoTicketsBot(config)
 
 #scheduleBot(ticketsBot, config['Config']['startTime'])
