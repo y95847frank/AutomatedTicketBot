@@ -1,6 +1,6 @@
 import AutoTicketsBot as tBot
 
-configDestination = 'config.yml'
+configDestination = 'var/config.yml'
 
 args = tBot.addArgs()
 config = tBot.configRead(configDestination)
@@ -15,7 +15,7 @@ try:
 	tBot.websiteSignIn(ticketsBot, retryCounter=3)
 	tBot.buyTickets(ticketsBot)
 	tBot.notifyUser('AutoTicketsBot Notification', 'Got tickets!!!!!')
-	tBot.terminateBot(ticketsBot, waitTime=600)
+	tBot.terminateBot(ticketsBot, waitTime=900)
 
 except RuntimeError as e:
 	tBot.terminateBot(ticketsBot, waitTime=0)
