@@ -3,14 +3,11 @@ from ticketBot import websiteSignIn, buyTickets, terminateBot, scheduleBot, Auto
 #TODO: yml, splinter setup
 
 configDestination = 'var/config.yml'
+
 args = addArgs()
-
 config = configRead(configDestination)
-
 if configWrite(configDestination, args, config) is True:
 	print("Successfully store new config to {}".format(configDestination))
-
-assert False
 
 ticketsBot = AutoTicketsBot(config)
 

@@ -63,11 +63,18 @@ class AutoTicketsBot(object):
         else:
             raise RuntimeError("Failed to find agree_term checkbox in ticket page...")
         
+        #self.captchaSolver("T2")
+
         if self.driver.is_element_present_by_text('Next Step', wait_time=2) is True:
             self.driver.find_by_text('Next Step').first.click()
         else:
             raise RuntimeError("Failed to find Next_Step button in ticket page...")
-        #button = self.driver.find_by_name('captcha_answer').fill('T2')
+
+    def captchaSolver(self, answer):
+        if self.driver.is_element_present_by_name('captcha_answer', wait_time=2) is True:
+            self.driver.find_by_name('captcha_answer').fill('answer')
+        else:
+            raise RuntimeError("Failed to find Captcha in ticket page...")
 
     def quit(self):
         self.driver.quit()
