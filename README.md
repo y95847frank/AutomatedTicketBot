@@ -7,10 +7,13 @@
 [![GitHub license](https://img.shields.io/github/license/y95847frank/AutomatedTicketBot)](https://github.com/y95847frank/AutomatedTicketBot/blob/master/LICENSE)
 [![HitCount](http://hits.dwyl.com/y95847frank/AutomatedTicketBot.svg)](http://hits.dwyl.com/y95847frank/AutomatedTicketBot)
 
+### Goal
+
+
 
 ### Execution
 
-To book tickets in kktix, you need to fill your account and concert information in `cofig.yml` beforehead. Or, you  can update these through passing arguments as executing the script. Here is the script for booking concert tickets in kktix.
+To book tickets in kktix, you need to fill your account and concert information in `cofig.yml` beforehead. Or, you  can update these arguments with `script/updateConfig.py`, which is an interative program. Here is the script for booking concert tickets in kktix.
 
 Try:
 ```bash
@@ -27,7 +30,7 @@ python setup.py install
 
 Then, set the path and account information via:
 ```bash
-python3 
+python3 scripts/updateConfig.py -d config.yml
 ```
 
 Can use the package as:
@@ -40,7 +43,7 @@ import AutoTicketsBot as tBot
 
 There're some testing program in tests directory (https://github.com/y95847frank/AutomatedTicketBot/tree/main/tests).
 
-Test the bot
+Test the bot:
 ```bash
 python tests/test.py
 ```
