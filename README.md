@@ -33,7 +33,7 @@ Then, set the path and account information via:
 python3 scripts/updateConfig.py -d config.yml
 ```
 
-Can use the package as:
+Eventually, use the package as:
 ```python
 import AutoTicketsBot as tBot
 ...
