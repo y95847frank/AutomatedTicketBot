@@ -9,7 +9,7 @@
 
 ### Goal
 
-
+This python bot can reserve concert tickets in kktix website using Splinter. The bot would start two minutes before the scheduled time. It log in to the home page automatically. When the website starts selling tickets, the bot would refresh the webpage and automatically fills in registration details. The bot not only refresh webpage faster than any human, but also is able to avoid any mistakes or delays.
 
 ### Execution
 
@@ -41,7 +41,7 @@ import AutoTicketsBot as tBot
 
 ### Test
 
-There're some testing program in tests directory (https://github.com/y95847frank/AutomatedTicketBot/tree/main/tests).
+There's a testing program in the tests directory (https://github.com/y95847frank/AutomatedTicketBot/tree/main/tests).
 
 Test the bot:
 ```bash
