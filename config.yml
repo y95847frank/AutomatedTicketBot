@@ -1,0 +1,11 @@
+Browser:
+  height: 640
+  width: 840
+Config:
+  executablePath: /Users/tyyen/Downloads/chromedriver
+  homeUrl: https://kktix.com/
+  password: password
+  startTime: '12:00'
+  ticketCount: 2
+  ticketPage: https://kktix.com/events/deluxe210403/registrations/new
+  username: username
