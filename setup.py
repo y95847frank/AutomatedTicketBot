@@ -13,7 +13,7 @@ setup(name='AutoTicketsBot',
       install_requires=[
           'splinter',
           'schedule',
-          'yaml'
+          'PyYAML'
       ],
       python_requires='>=3',
       )

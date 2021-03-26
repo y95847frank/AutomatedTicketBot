@@ -19,7 +19,7 @@ def addArgs():
     return args
 
 def configRead(fileName):
-    with open(os.path.join(os.path.dirname(__file__), fileName)) as file:
+    with open(os.path.join(os.getcwd(), fileName)) as file:
         config = yaml.safe_load(file)
     return config
 
@@ -32,7 +32,7 @@ def configWrite(fileName, args, config):
             writeFlag = True
 
     if writeFlag is True:
-        with open(os.path.join(os.path.dirname(__file__), fileName), 'w') as file:
+        with open(os.path.join(os.getcwd(), fileName), 'w') as file:
             yaml.dump(config, file)
         return True
     else:

@@ -1,6 +1,4 @@
-from ticketBot import websiteSignIn, buyTickets, terminateBot, scheduleBot, AutoTicketsBot, configRead, notifyUser, addArgs, configWrite
-
-#TODO: yml, splinter setup
+from AutoTicketsBot import websiteSignIn, buyTickets, terminateBot, scheduleBot, AutoTicketsBot, configRead, notifyUser, addArgs, configWrite
 
 configDestination = 'var/config.yml'
 
